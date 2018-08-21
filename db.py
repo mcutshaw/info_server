@@ -42,5 +42,9 @@ class info_database:
         return text_return
 
     def returntop(self,table,fields,sort_field):
-        querystr = "SELECT " + ''.join(fields) +" FROM "+ table + " ORDER BY " + sort_field + " DESC"
-        return self.execute(querystr)
+        querystr = "SELECT " + ','.join(fields) +" FROM "+ table + " ORDER BY " + sort_field + " DESC LIMIT 1"
+        topVal = self.execute(querystr)
+        if topVal == []:
+            return topVal
+        else:
+            return topVal[0]
